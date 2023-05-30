@@ -1,6 +1,6 @@
 # Ma petite planète
 
- <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/e7f226e4-17ca-477c-85d7-f04f66b1e756" width="250"> 
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/e656c45d-d2f4-4160-9f0f-f7eaa0b1d885" width="250"> 
 
 # Exercise in Flutter: Mise en situation – Développeuse mobile (Stage/Alternance)
 
