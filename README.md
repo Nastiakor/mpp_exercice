@@ -43,7 +43,7 @@ https://api.flutter.dev/flutter/material/IconButton-class.html.
 Comments: I have created a new class ContactCard that takes 2 required parameters, name and phoneNumber, the build method returns a Container; and I've added it in ContactPage. 
 
 7. Repeat this card object vertically until it overflows the screen (wrap the container in a column). The page should be readable and scrollable. 
-Comments: I decided to call the ContactCard class on ContactPage several times with different class attrinutes. For the moment I left them as a hard-code data but I had in mind to further stock them in a JSON file or in a database. 
+Comments: I decided to call the ContactCard class on ContactPage several times with different class attrinutes. For the moment I left them as a hard-code data but I had in mind to further stock them in a JSON file or in a database and display them with a ListView.builder constructor.
 Source: https://docs.flutter.dev/cookbook/lists/long-lists.
 
 ## Optional Enhancements
