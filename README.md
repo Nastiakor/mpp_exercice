@@ -1,6 +1,6 @@
 # Ma petite planète
 
- <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/3dcba5b2-6564-4127-aa13-b21b33f6ebcd" width="250"> 
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/e7f226e4-17ca-477c-85d7-f04f66b1e756" width="250"> 
 
 # Exercise in Flutter: Mise en situation – Développeuse mobile (Stage/Alternance)
 
@@ -70,13 +70,13 @@ In order to do it, I have imported google_fonts package (https://pub.dev/package
 I had the idea to use the Mozilla extensions like Fonts ninja and ColorZilla to reproduce some colors and fonts used on the website of Ma petite planète. Here are the colors I used: 0xFFE7FEF6, 0xFFEEF9FB, 0xFF59CEA8 (I took inspiration from MPP website but changed them a little). Font color: 0xFF2C2C69 used on MPP site. Fonts: Poppins and OpenSans used on MPP. 
 
 <p float="left"> 
- <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/d85f7a22-1d1c-4d62-920e-100a96521230" width="100" />
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/3047470b-803b-4d95-92ad-bfe00cf27e93" width="100" />
  <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/83a3c922-f650-4822-a95c-8c6a993fdb45" width="100" />  
 </p>
 
 I have also imported flutter_launcher_icons in order to create a customized MPP launcher icon: https://pub.dev/packages/flutter_launcher_icons.
 
-<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/696fb173-95a7-4baf-be4b-9246942b7556" width="100"> 
+<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/ed2b5c3a-ed33-4979-a8e6-a91e6507bf5b" width="100"> 
 
 I had a trouble to align it, so I found some information on https://blog.logrocket.com/create-adaptive-icons-flutter-launcher-icons/
 and discovered https://icon.kitchen site that helped me a lot! I also used this video: https://www.youtube.com/watch?v=eMHbgIgJyUQ.
@@ -90,7 +90,8 @@ I finally decided to refactor my code by creating several directories as follows
 - widgets (bottom_navigation_bar, contact_button and contact_card.dart)
 - and the files main.dart and style.dart.
 
-<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/683a2ad4-45f9-4a0b-9626-0fe6f19fa5e9" width="100"> 
+<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/683a2ad4-45f9-4a0b-9626-0fe6f19fa5e9](https://github.com/Nastiakor/mpp_exercice/assets/114946987/9bdad00d-d5ce-461e-b4c9-fb49422c6c0c)" width="100"> 
+
 
 
 
