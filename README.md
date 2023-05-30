@@ -70,8 +70,8 @@ In order to do it, I have imported google_fonts package (https://pub.dev/package
 I had the idea to use the Mozilla extensions like Fonts ninja and ColorZilla to reproduce some colors and fonts used on the website of Ma petite planète. Here are the colors I used: 0xFFE7FEF6, 0xFFEEF9FB, 0xFF59CEA8 (I took inspiration from MPP website but changed them a little). Font color: 0xFF2C2C69 used on MPP site. Fonts: Poppins and OpenSans used on MPP. 
 
 <p float="left"> 
- <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/3047470b-803b-4d95-92ad-bfe00cf27e93" width="100" />
- <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/83a3c922-f650-4822-a95c-8c6a993fdb45" width="100" />  
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/5f998cba-dd74-438b-b45f-18345e10cefc" width="100" /> 
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/3047470b-803b-4d95-92ad-bfe00cf27e93" width="100" /> 
 </p>
 
 I have also imported flutter_launcher_icons in order to create a customized MPP launcher icon: https://pub.dev/packages/flutter_launcher_icons.
@@ -90,7 +90,7 @@ I finally decided to refactor my code by creating several directories as follows
 - widgets (bottom_navigation_bar, contact_button and contact_card.dart)
 - and the files main.dart and style.dart.
 
-<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/683a2ad4-45f9-4a0b-9626-0fe6f19fa5e9](https://github.com/Nastiakor/mpp_exercice/assets/114946987/9bdad00d-d5ce-461e-b4c9-fb49422c6c0c)" width="100"> 
+<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/683a2ad4-45f9-4a0b-9626-0fe6f19fa5e9" width="100"> 
 
 
 
