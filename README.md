@@ -90,7 +90,7 @@ I finally decided to refactor my code by creating several directories as follows
 - widgets (bottom_navigation_bar, contact_button and contact_card.dart)
 - and the files main.dart and style.dart.
 
-<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/683a2ad4-45f9-4a0b-9626-0fe6f19fa5e9" width="100"> 
+<img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/006b3bd0-89e1-44b7-bc69-39b6ddb3736a" width="150"> 
 
 
 
