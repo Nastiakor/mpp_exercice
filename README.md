@@ -82,7 +82,7 @@ I had a trouble to align it, so I found some information on https://blog.logrock
 and discovered https://icon.kitchen site that helped me a lot! I also used this video: https://www.youtube.com/watch?v=eMHbgIgJyUQ.
 
 I've also added an image on the main page. I've noticed that there was a delay in displaying it so I wrapped it in a FutureBuilder widget.
-I have also added a bottom navigation bar to harmonize the main page, however, as I only had 1 day to complete the exercice, I haven't developed any features to make functionable.
+I have also added a bottom navigation bar to harmonize the main page, however, as I only had 1 day to complete the exercice, I haven't developed any features to make it functionable.
 
 I finally decided to refactor my code by creating several directories as follows in order to make it scalable and flexible: 
 - pages (with contact_page.dart), 
