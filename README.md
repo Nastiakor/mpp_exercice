@@ -11,12 +11,12 @@ This exercise is part of the application process for a mobile developer apprenti
 - Launching the basic Flutter "myApp" application
 
 Comments: As I have developed a Flutter app before, I had this SDK already installed on my computer (Flutter version 3.10.2 and Dart SDK version: 3.0.2). I used the official Flutter documentation for MacOS: https://docs.flutter.dev/get-started/install/macos. 
-I also had Xcode installed and the iOS simulator and the Android emulator set up. 
+I also had Xcode installed and the iOS simulator and the Android emulator set up. The IDE I use is Android Studio. 
 
 ## Steps
 1. Create a "Page contact" button with a Flutter icon and the text "Page contact" (style is free). 
 
-Comments: I used the ElevatedButton.icon constructor and I customized the button.
+Comments: I used the ElevatedButton.icon constructor on the home page and I customized the button.
 Source: Flutter documentation https://api.flutter.dev/flutter/material/ElevatedButton/ElevatedButton.icon.html. 
 
 2. Create the second page, "Page contact". 
@@ -43,7 +43,7 @@ https://api.flutter.dev/flutter/material/IconButton-class.html.
 Comments: I have created a new class ContactCard that takes 2 required parameters, name and phoneNumber, the build method returns a Container; and I've added it in ContactPage. 
 
 7. Repeat this card object vertically until it overflows the screen (wrap the container in a column). The page should be readable and scrollable. 
-Comments: I decided to call the ContactCard class on ContactPage several times with different class attrinutes. For the moment I left them as a hard-code data but I had in mind to further stock them in a JSON file or in a database and display them with a ListView.builder constructor.
+Comments: I decided to call the ContactCard class on ContactPage several times with different class attributes. For the moment I left them as a hard-code data but I had in mind to further stock them in a JSON file or in a database and display them with a ListView.builder constructor.
 Source: https://docs.flutter.dev/cookbook/lists/long-lists.
 
 ## Optional Enhancements
@@ -81,8 +81,8 @@ I have also imported flutter_launcher_icons in order to create a customized MPP 
 I had a trouble to align it, so I found some information on https://blog.logrocket.com/create-adaptive-icons-flutter-launcher-icons/
 and discovered https://icon.kitchen site that helped me a lot! I also used this video: https://www.youtube.com/watch?v=eMHbgIgJyUQ.
 
-I've also added an image on the main page. I've noticed that there was a delay in displaying it so I wrapped it in a FutureBuilder widget.
-I have also added a bottom navigation bar to harmonize the main page, however, as I only had 1 day to complete the exercice, I haven't developed any features to make functionable.
+I've also added an image on the main page. I've noticed that there was a delay in displaying it so I wrapped it in the FutureBuilder widget.
+I have also added a bottom navigation bar to harmonize the main page, however, as I only had 1 day to complete the exercice, I haven't developed any features to make it functionable.
 
 I finally decided to refactor my code by creating several directories as follows in order to make it scalable and flexible: 
 - pages (with contact_page.dart), 
