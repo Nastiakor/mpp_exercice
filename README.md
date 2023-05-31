@@ -86,7 +86,7 @@ I have also added a bottom navigation bar to harmonize the main page, however, a
 
 I finally decided to refactor my code by creating several directories as follows in order to make it scalable and flexible: 
 - pages (with contact_page.dart), 
-- utils (with main_page_app_bar and toast.dart),
+- utils (with main_page_app_bar and copy_phone_number.dart),
 - widgets (bottom_navigation_bar, contact_button and contact_card.dart)
 - and the files main.dart and style.dart.
 
