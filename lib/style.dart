@@ -11,6 +11,9 @@ const double buttonTextFontSize = 18.0;
 const double buttonBorderRadius = 20.0;
 
 // Text Styles
+final contactNameStyle = const TextStyle(fontSize: 18.0);
+final contactNumberStyle = const TextStyle(fontSize: 14.0);
+
 final contactAppBarTextStyle =
     TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
 final contactButtonTextStyle = GoogleFonts.openSans(
@@ -18,8 +21,6 @@ final contactButtonTextStyle = GoogleFonts.openSans(
   color: contactButtonIconColor,
   fontWeight: FontWeight.bold,
 );
-final contactNameStyle = const TextStyle(fontSize: 18.0);
-final contactNumberStyle = const TextStyle(fontSize: 14.0);
 
 // Margin and padding of the contact card
 const cardMargin = EdgeInsets.all(10.0);
@@ -37,4 +38,11 @@ final contactCardDecoration = BoxDecoration(
       offset: const Offset(0, 3),
     ),
   ],
+);
+
+final elevatedButtonStyle = ElevatedButton.styleFrom(
+  backgroundColor: secondaryColor,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(buttonBorderRadius),
+  ),
 );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mpp/pages/contact_page.dart';
 import 'package:mpp/widgets/contact_button.dart';
 import 'package:mpp/style.dart';
 import 'package:mpp/widgets/bottom_navigation_bar.dart';
@@ -69,16 +68,7 @@ class MyHomePage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    MyContactButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ContactPage(),
-                          ),
-                        );
-                      },
-                    ),
+                    MyContactButton(),
                   ],
                 ),
               );

@@ -46,12 +46,15 @@ class ContactCard extends StatelessWidget {
       onTap: () => _launchURL(context),
       child: Container(
         width: MediaQuery.of(context).size.width * 0.5,
+        // takes half a screen
         height: 130,
-        margin: cardMargin, // margins between cards
+        margin: cardMargin,
+        // margins between cards
         padding: cardPadding,
         decoration: contactCardDecoration,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // centers the content of the column
+          mainAxisAlignment: MainAxisAlignment.center,
+          // centers the content of the column
           children: [
             Text(
               name,

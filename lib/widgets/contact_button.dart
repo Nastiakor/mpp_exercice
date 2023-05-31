@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mpp/style.dart';
+import 'package:mpp/pages/contact_page.dart';
 
 class MyContactButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const MyContactButton({Key? key, required this.onPressed}) : super(key: key);
+  const MyContactButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +17,14 @@ class MyContactButton extends StatelessWidget {
         'Page contact',
         style: contactButtonTextStyle,
       ),
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: secondaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(buttonBorderRadius),
-        ),
-      ),
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ContactPage(),
+            ));
+      },
+      style: elevatedButtonStyle,
     );
   }
 }
