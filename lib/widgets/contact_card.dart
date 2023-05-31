@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:mpp/utils/toast.dart';
+import 'package:mpp/utils/copy_phone_number.dart';
 import 'package:mpp/style.dart';
 
 class ContactCard extends StatelessWidget {
