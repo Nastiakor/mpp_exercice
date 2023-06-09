@@ -20,7 +20,7 @@ class Answer extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 5, horizontal: 30),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: null,
+          color: answerColor,
           border: Border.all(color: Colors.teal),
           borderRadius: BorderRadius.circular(20),
         ),

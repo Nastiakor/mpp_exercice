@@ -38,22 +38,20 @@ class _QuizGameState extends State<QuizGame> {
                 color: Color(0xFFFFA29D),
               ),
       );
-      // when the quiz ends
-      if (_questionIndex + 1 == _questions.length) {
-        endOfQuiz == true;
-      }
     });
   }
 
   void _nextQuestion() {
-    setState(() {
-      _questionIndex++;
-      answerSelected = false;
-      correctAnswerSelected = false;
-    });
-    // what happens at the end of the quiz
-    if (_questionIndex >= _questions.length) {
-      _resetQuiz();
+    if (_questionIndex + 1 < _questions.length) {
+      setState(() {
+        _questionIndex++;
+        answerSelected = false;
+        correctAnswerSelected = false;
+      });
+    } else if (_questionIndex + 1 == _questions.length) {
+      setState(() {
+        endOfQuiz = true;
+      });
     }
   }
 
@@ -63,6 +61,8 @@ class _QuizGameState extends State<QuizGame> {
       _totalScore = 0;
       _scoreTracker = [];
       endOfQuiz = false;
+      correctAnswerSelected = false;
+      answerSelected = false;
     });
   }
 
@@ -127,23 +127,39 @@ class _QuizGameState extends State<QuizGame> {
               );
             }).toList(),
             SizedBox(height: 20),
-            ElevatedButton(
-              style: elevatedButtonStyle,
-              onPressed: () {
-                if (!answerSelected) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                          'Veuillez choisir une réponse avant de passer à la question suivante'),
-                    ),
-                  );
-                  return;
-                }
-                _nextQuestion();
-              },
-              child:
-                  Text(endOfQuiz ? 'Recommencer le quiz' : 'Question suivante'),
-            ),
+            endOfQuiz == false
+                ? ElevatedButton(
+                    style: elevatedButtonStyle,
+                    onPressed: () {
+                      if (!answerSelected) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'Veuillez choisir une réponse avant de passer à la question suivante'),
+                          ),
+                        );
+                        return;
+                      }
+                      _nextQuestion();
+                    },
+                    child: Text('Question suivante'),
+                  )
+                : ElevatedButton(
+                    style: elevatedButtonStyle,
+                    onPressed: () {
+                      if (!answerSelected) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                'Veuillez choisir une réponse avant de passer à la question suivante'),
+                          ),
+                        );
+                        return;
+                      }
+                      _resetQuiz();
+                    },
+                    child: Text('Recommencer le quiz'),
+                  ),
             Container(
               padding: EdgeInsets.all(20),
               child: Text(
@@ -179,7 +195,7 @@ class _QuizGameState extends State<QuizGame> {
               Container(
                 height: 100,
                 width: double.infinity,
-                color: Colors.grey,
+                margin: EdgeInsets.all(20),
                 child: Center(
                   child: Text(
                     _totalScore > 5
