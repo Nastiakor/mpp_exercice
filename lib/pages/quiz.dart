@@ -179,7 +179,7 @@ class _QuizGameState extends State<QuizGame> {
               Container(
                 height: 100,
                 width: double.infinity,
-                color: Colors.black,
+                color: Colors.grey,
                 child: Center(
                   child: Text(
                     _totalScore > 5
