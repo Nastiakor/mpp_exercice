@@ -13,6 +13,58 @@ class _QuizGameState extends State<QuizGame> {
   List<Icon> _scoreTracker = [];
   int _questionIndex = 0;
   int _totalScore = 0;
+  bool answerSelected = false;
+  bool endOfQuiz = false;
+  bool correctAnswerSelected = false;
+
+  void _questionAnswered(bool answerScore) {
+    setState(() {
+      // answer was selected
+      answerSelected = true;
+      // check if answer was correct
+      if (answerScore) {
+        _totalScore++;
+        correctAnswerSelected = true;
+      }
+      // adding to the score tracker on top
+      _scoreTracker.add(
+        answerScore
+            ? Icon(
+                Icons.check_circle,
+                color: Color(0xFF30CE9B),
+              )
+            : Icon(
+                Icons.clear,
+                color: Color(0xFFFFA29D),
+              ),
+      );
+      // when the quiz ends
+      if (_questionIndex + 1 == _questions.length) {
+        endOfQuiz == true;
+      }
+    });
+  }
+
+  void _nextQuestion() {
+    setState(() {
+      _questionIndex++;
+      answerSelected = false;
+      correctAnswerSelected = false;
+    });
+    // what happens at the end of the quiz
+    if (_questionIndex >= _questions.length) {
+      _resetQuiz();
+    }
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+      _scoreTracker = [];
+      endOfQuiz = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +110,44 @@ class _QuizGameState extends State<QuizGame> {
                     as List<Map<String, Object>>)
                 .map((answer) {
               return Answer(
-                  // Pass the necessary properties from answer map to your Answer widget here
-                  );
+                answerText: answer['answerText'].toString(),
+                answerColor: answerSelected
+                    ? answer['score'] == true
+                        ? Color(0xFF30CE9B)
+                        : Color(0xFFFFA29D)
+                    : null,
+                answerTap: () {
+                  // if answer was already selected then nothing happens onTap
+                  if (answerSelected) {
+                    return;
+                  }
+                  // answer is being selected
+                  _questionAnswered(answer['score'] as bool);
+                },
+              );
             }).toList(),
             SizedBox(height: 20),
             ElevatedButton(
               style: elevatedButtonStyle,
-              onPressed: () {},
-              child: Text('Question suivante'),
+              onPressed: () {
+                if (!answerSelected) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                          'Veuillez choisir une réponse avant de passer à la question suivante'),
+                    ),
+                  );
+                  return;
+                }
+                _nextQuestion();
+              },
+              child:
+                  Text(endOfQuiz ? 'Recommencer le quiz' : 'Question suivante'),
             ),
             Container(
               padding: EdgeInsets.all(20),
               child: Text(
-                '0/9',
+                '${_totalScore.toString()}/${_questions.length}',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -78,6 +155,46 @@ class _QuizGameState extends State<QuizGame> {
                 ),
               ),
             ),
+            if (answerSelected && !endOfQuiz)
+              Container(
+                height: 100,
+                width: double.infinity,
+                color: correctAnswerSelected
+                    ? Color(0xFF30CE9B)
+                    : Color(0xFFFFA29D),
+                child: Center(
+                  child: Text(
+                    correctAnswerSelected
+                        ? "Bravo, c'est correct ! "
+                        : "Faux :(",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            if (endOfQuiz)
+              Container(
+                height: 100,
+                width: double.infinity,
+                color: Colors.black,
+                child: Center(
+                  child: Text(
+                    _totalScore > 5
+                        ? 'Bravo ! Votre résultat est : $_totalScore'
+                        : 'Votre résultat est : $_totalScore. Bonne chance pour la prochaine fois !',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: _totalScore > 4
+                          ? Color(0xFF30CE9B)
+                          : Color(0xFFFFA29D),
+                    ),
+                  ),
+                ),
+              ),
           ],
         ),
       ),
