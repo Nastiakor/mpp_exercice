@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mpp/utils/victory_or_defeat.dart';
 import 'package:mpp/widgets/answer.dart';
 import 'package:mpp/style.dart';
 
@@ -52,6 +53,9 @@ class _QuizGameState extends State<QuizGame> {
       setState(() {
         endOfQuiz = true;
       });
+    }
+    if (answerSelected && _totalScore > 5) {
+      Future.delayed(Duration.zero, () => didIwin(context, _totalScore));
     }
   }
 
@@ -191,26 +195,10 @@ class _QuizGameState extends State<QuizGame> {
                   ),
                 ),
               ),
-            if (endOfQuiz)
-              Container(
-                height: 100,
-                width: double.infinity,
-                margin: EdgeInsets.all(20),
-                child: Center(
-                  child: Text(
-                    _totalScore > 5
-                        ? 'Bravo ! Votre résultat est : $_totalScore'
-                        : 'Votre résultat est : $_totalScore. Bonne chance pour la prochaine fois !',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: _totalScore > 4
-                          ? Color(0xFF30CE9B)
-                          : Color(0xFFFFA29D),
-                    ),
-                  ),
-                ),
-              ),
+  /*          if (endOfQuiz && _totalScore > 5)
+              didIwin(context, _totalScore)
+            else if (endOfQuiz && _totalScore < 5)
+              didIlose(_totalScore),*/
           ],
         ),
       ),
