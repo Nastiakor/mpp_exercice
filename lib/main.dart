@@ -75,7 +75,7 @@ class MyHomePage extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: MyBottomNavigationBar(),
+      bottomNavigationBar: MyBottomNavigationBar(currentIndex: 0),
     );
   }
 }

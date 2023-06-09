@@ -11,8 +11,14 @@ const double buttonTextFontSize = 18.0;
 const double buttonBorderRadius = 20.0;
 
 // Text Styles
-final contactNameStyle = const TextStyle(fontSize: 18.0);
-final contactNumberStyle = const TextStyle(fontSize: 14.0);
+final contactNameStyle = const TextStyle(
+  fontSize: 18.0,
+  color: Color(0xFF2C2C69),
+);
+final contactNumberStyle = const TextStyle(
+  fontSize: 14.0,
+  color: Color(0xFF2C2C69),
+);
 
 final contactAppBarTextStyle =
     TextStyle(color: Colors.white, fontWeight: FontWeight.bold);

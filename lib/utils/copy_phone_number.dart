@@ -3,7 +3,9 @@ import 'package:flutter/services.dart'; // needed for Clipboard
 import 'package:fluttertoast/fluttertoast.dart';
 
 void copyPhoneNumber(String phone) {
-  Clipboard.setData(ClipboardData(text: phone));
+  Clipboard.setData(
+    ClipboardData(text: phone),
+  );
   Fluttertoast.showToast(
     msg: 'Numéro de téléphone copié',
     toastLength: Toast.LENGTH_SHORT,
