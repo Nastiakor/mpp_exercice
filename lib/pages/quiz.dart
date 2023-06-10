@@ -141,7 +141,7 @@ class _QuizGameState extends State<QuizGame> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                                'Veuillez choisir une réponse avant de passer à la question suivante'),
+                                'Tu dois choisir une réponse avant de passer à la question suivante'),
                           ),
                         );
                         return;
@@ -157,7 +157,7 @@ class _QuizGameState extends State<QuizGame> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                                'Veuillez choisir une réponse avant de passer à la question suivante'),
+                                'Tu dois choisir une réponse avant de passer à la question suivante'),
                           ),
                         );
                         return;
@@ -168,14 +168,14 @@ class _QuizGameState extends State<QuizGame> {
                   ),
             Container(
               padding: EdgeInsets.all(20),
-              child: Text(
+             /* child: Text(
                 '${_totalScore.toString()}/${_questions.length}',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF2C2C69),
                 ),
-              ),
+              ),*/
             ),
             if (answerSelected && !endOfQuiz)
               Container(

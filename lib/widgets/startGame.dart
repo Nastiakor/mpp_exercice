@@ -11,7 +11,7 @@ class StartGame extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Quiz',
+          'Histoire de Léo le lapin',
           style: contactAppBarTextStyle,
         ),
         backgroundColor: secondaryColor,
@@ -32,9 +32,18 @@ class StartGame extends StatelessWidget {
                     fontFamily: GoogleFonts.poppins().fontFamily,
                   ),
                 ),
-                SizedBox(height: 15),
-                Image.asset('images/rabbit_on_island.jpg', height: 300),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
+                Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(12),
+                    ),
+                  ),
+                  child:
+                      Image.asset('images/rabbit_on_island.jpg', height: 300),
+                ),
+                SizedBox(height: 10),
                 ElevatedButton(
                   style: elevatedButtonStyle,
                   onPressed: () {
