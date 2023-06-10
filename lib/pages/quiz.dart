@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mpp/utils/victory_or_defeat.dart';
+import 'package:mpp/utils/didIwin_didIlose.dart';
 import 'package:mpp/widgets/answer.dart';
 import 'package:mpp/style.dart';
 
@@ -11,7 +11,7 @@ class QuizGame extends StatefulWidget {
 }
 
 class _QuizGameState extends State<QuizGame> {
-  List<Icon> _scoreTracker = [];
+  List<Widget> _scoreTracker = [];
   int _questionIndex = 0;
   int _totalScore = 0;
   bool answerSelected = false;
@@ -30,17 +30,17 @@ class _QuizGameState extends State<QuizGame> {
       // adding to the score tracker on top
       _scoreTracker.add(
         answerScore
-            ? Icon(
-                Icons.check_circle,
-                color: Color(0xFF30CE9B),
+            ? Image.asset(
+                "images/carrot.png",
+                height: 43,
+                width: 43,
               )
-            : Icon(
-                Icons.clear,
-                color: Color(0xFFFFA29D),
-              ),
+            : Image.asset("images/eaten_carrot.png", height: 43, width: 43),
       );
     });
   }
+
+
 
   void _nextQuestion() {
     if (_questionIndex + 1 < _questions.length) {
@@ -54,8 +54,10 @@ class _QuizGameState extends State<QuizGame> {
         endOfQuiz = true;
       });
     }
-    if (answerSelected && _totalScore > 5) {
+    if (answerSelected && _totalScore >= 5) {
       Future.delayed(Duration.zero, () => didIwin(context, _totalScore));
+    } else if (answerSelected && _totalScore < 5) {
+      Future.delayed(Duration.zero, () => didIlose(context, _totalScore));
     }
   }
 
@@ -84,12 +86,14 @@ class _QuizGameState extends State<QuizGame> {
         color: primaryColor,
         child: Column(
           children: [
+            SizedBox(height: 20),
             Row(
               children: [
-                if (_scoreTracker.length == 0) SizedBox(height: 25),
+                if (_scoreTracker.length == 0) SizedBox(height: 40),
                 if (_scoreTracker.length > 0) ..._scoreTracker
               ],
             ),
+            SizedBox(height: 20),
             Container(
               width: double.infinity,
               height: 130,
@@ -195,10 +199,6 @@ class _QuizGameState extends State<QuizGame> {
                   ),
                 ),
               ),
-  /*          if (endOfQuiz && _totalScore > 5)
-              didIwin(context, _totalScore)
-            else if (endOfQuiz && _totalScore < 5)
-              didIlose(_totalScore),*/
           ],
         ),
       ),
@@ -208,182 +208,114 @@ class _QuizGameState extends State<QuizGame> {
 
 final _questions = const [
   {
-    'question': "Qu'est-ce que l'empreinte carbone ?",
+    'question':
+        "Quel est le meilleur moyen de se déplacer pour aller à l'école ?",
     'answers': [
+      {'answerText': "Prendre la voiture tous les jours", 'score': false},
+      {'answerText': "Marcher ou faire du vélo", 'score': true},
       {
-        'answerText': "La quantité totale d'eau consommée par une personne",
-        'score': false
-      },
-      {
-        'answerText':
-            "La quantité totale de gaz à effet de serre émise par une personne",
-        'score': true
-      },
-      {
-        'answerText': "La quantité totale de déchets produits par une personne",
+        'answerText': "Demander à maman ou papa de nous déposer en voiture",
         'score': false
       },
     ],
   },
   {
-    'question': "Qu'est-ce que la biodiversité ?",
+    'question': "Qu'est-ce qui est le mieux pour l'environnement ?",
     'answers': [
-      {'answerText': "La variété des formes de vie sur Terre", 'score': true},
-      {
-        'answerText': "La quantité d'eau douce disponible dans le monde",
-        'score': false
-      },
-      {
-        'answerText': "La quantité de gaz à effet de serre dans l'atmosphère",
-        'score': false
-      },
+      {'answerText': "Prendre un bain tous les jours", 'score': false},
+      {'answerText': "Prendre une douche courte", 'score': true},
+      {'answerText': "Remplir la baignoire pour jouer", 'score': false},
     ],
   },
   {
-    'question': "Qu'est-ce que les énergies renouvelables ?",
+    'question': "Qu'est-ce qui est le mieux pour la planète ?",
     'answers': [
-      {
-        'answerText': "Des sources d'énergie qui se renouvellent naturellement",
-        'score': true
-      },
-      {
-        'answerText':
-            "Des sources d'énergie basées sur le charbon et le pétrole",
-        'score': false
-      },
-      {
-        'answerText':
-            "Des sources d'énergie utilisant des combustibles fossiles",
-        'score': false
-      },
+      {'answerText': "Jeter les déchets par terre", 'score': false},
+      {'answerText': "Les mettre dans une poubelle", 'score': true},
+      {'answerText': "Les brûler dans le jardin", 'score': false},
     ],
   },
   {
-    'question': "Quels sont les effets du changement climatique ?",
+    'question': "Qu'est-ce qui aide à économiser l'énergie ?",
     'answers': [
       {
-        'answerText':
-            "Élévation des températures, fonte des glaciers, événements météorologiques extrêmes",
-        'score': true
-      },
-      {
-        'answerText':
-            "Augmentation de la population mondiale, épuisement des ressources naturelles",
+        'answerText': "Laisser les lumières allumées toute la journée",
         'score': false
       },
+      {'answerText': "Utiliser des ampoules énergétiques", 'score': false},
       {
-        'answerText':
-            "Dégradation des sols, diminution de la biodiversité, pollution de l'eau",
-        'score': false
-      },
-    ],
-  },
-  {
-    'question': "Qu'est-ce que la déforestation ?",
-    'answers': [
-      {
-        'answerText': "La plantation d'arbres dans les zones urbaines",
-        'score': false
-      },
-      {
-        'answerText':
-            "La restauration des forêts endommagées par des incendies",
-        'score': false
-      },
-      {'answerText': "La destruction permanente des forêts", 'score': true},
-    ],
-  },
-  {
-    'question': "Qu'est-ce que l'effet de serre ?",
-    'answers': [
-      {
-        'answerText':
-            "Un processus naturel qui maintient une température favorable sur Terre",
-        'score': true
-      },
-      {
-        'answerText':
-            "L'augmentation de la concentration d'ozone dans l'atmosphère",
-        'score': false
-      },
-      {
-        'answerText':
-            "La dégradation de la couche d'ozone dans la stratosphère",
-        'score': false
-      },
-    ],
-  },
-  {
-    'question': "Quelles sont les principales sources de pollution de l'air ?",
-    'answers': [
-      {
-        'answerText':
-            "Les émissions industrielles, les véhicules, les pratiques agricoles",
-        'score': true
-      },
-      {
-        'answerText': "Les rejets chimiques provenant des océans",
-        'score': false
-      },
-      {'answerText': "Les émissions des centrales nucléaires", 'score': false},
-    ],
-  },
-  {
-    'question': "Qu'est-ce que la surpêche ?",
-    'answers': [
-      {
-        'answerText': "L'exploitation durable des ressources halieutiques",
-        'score': false
-      },
-      {
-        'answerText':
-            "L'utilisation de techniques de pêche respectueuses de l'environnement",
-        'score': false
-      },
-      {
-        'answerText': "L'exploitation excessive des ressources halieutiques",
+        'answerText': "Éteindre les lumières en sortant d'une pièce",
         'score': true
       },
     ],
   },
   {
-    'question': "Quels sont les avantages des véhicules électriques ?",
+    'question':
+        "Quand on jette un plastique, combien de temps met-il pour se décomposer ?",
+    'answers': [
+      {'answerText': "Quelques heures", 'score': false},
+      {'answerText': "Plusieurs centaines d'années", 'score': true},
+      {'answerText': "Quelques mois", 'score': false},
+    ],
+  },
+  {
+    'question': "Qu'est-ce qui aide à économiser l'eau ?",
     'answers': [
       {
-        'answerText':
-            "Réduction des émissions de gaz à effet de serre et de la pollution atmosphérique",
+        'answerText': "Laisser le robinet ouvert en se brossant les dents",
+        'score': false
+      },
+      {
+        'answerText': "Fermer le robinet pendant le brossage des dents",
+        'score': true
+      },
+      {'answerText': "Prendre un bain tous les jours", 'score': false},
+    ],
+  },
+  {
+    'question': "Qu'est-ce qui est préférable pour réduire les déchets ?",
+    'answers': [
+      {
+        'answerText': "Utiliser des sacs en plastique à usage unique",
+        'score': false
+      },
+      {'answerText': "Utiliser des sacs réutilisables en tissu", 'score': true},
+      {'answerText': "Jeter les déchets par terre", 'score': false},
+    ],
+  },
+  {
+    'question': "Qu'est-ce qui est mieux pour protéger les océans ?",
+    'answers': [
+      {'answerText': "Ignorer les déchets sur la plage", 'score': false},
+      {'answerText': "Jeter les déchets dans la mer", 'score': false},
+      {'answerText': "Ramasser les déchets sur la plage", 'score': true},
+    ],
+  },
+  {
+    'question': "Comment pouvons-nous aider les animaux de la forêt ?",
+    'answers': [
+      {
+        'answerText': "En respectant leur habitat et en ne les dérangeant pas",
         'score': true
       },
       {
         'answerText':
-            "Coût de fonctionnement plus élevé et dépendance aux combustibles fossiles",
+            "En jetant nos déchets par terre pour qu'ils aient à manger",
         'score': false
       },
       {
-        'answerText': "Moins d'autonomie par rapport aux voitures à essence",
+        'answerText': "En leur construisant des maisons en plastique",
         'score': false
       },
     ],
   },
   {
     'question':
-        "Quelles actions individuelles peuvent aider à protéger l'environnement ?",
+        "Que pouvons-nous faire pour aider les plantes et les arbres à grandir ?",
     'answers': [
-      {
-        'answerText':
-            "Réduire la consommation d'eau et d'énergie, recycler les déchets",
-        'score': true
-      },
-      {
-        'answerText':
-            "Augmenter la consommation de viande et utiliser des produits jetables",
-        'score': false
-      },
-      {
-        'answerText':
-            "Utiliser des sacs en plastique à usage unique et gaspiller l'eau",
-        'score': false
-      },
+      {'answerText': "Les arroser régulièrement", 'score': true},
+      {'answerText': "Marcher dessus pour les aider à pousser", 'score': false},
+      {'answerText': "Les couper avec des ciseaux", 'score': false},
     ],
   },
 ];

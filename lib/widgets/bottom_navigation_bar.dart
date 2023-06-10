@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mpp/pages/quiz.dart';
 import 'package:mpp/style.dart';
+import 'package:mpp/widgets/startGame.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   final int currentIndex;
@@ -40,7 +40,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => QuizGame(),
+                builder: (context) => StartGame(),
               ),
             );
           }
