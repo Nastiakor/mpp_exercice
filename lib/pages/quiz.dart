@@ -40,8 +40,6 @@ class _QuizGameState extends State<QuizGame> {
     });
   }
 
-
-
   void _nextQuestion() {
     if (_questionIndex + 1 < _questions.length) {
       setState(() {

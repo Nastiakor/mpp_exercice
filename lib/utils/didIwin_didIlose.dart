@@ -10,13 +10,14 @@ void didIwin(BuildContext context, finalScore) {
           // This makes the dialog's size to be determined by its children
           children: [
             Text(
-              'Bravo ! Ton résultat est : $finalScore',
+              'Bravo ! Ton résultat est : $finalScore. Grâce à toi, Léo va pouvoir rejoindre le continent !',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Color(0xFF30CE9B),
               ),
             ),
+            SizedBox(height: 20),
             Image.asset('images/rabbit_dribble.gif'),
           ],
         ),
@@ -41,6 +42,7 @@ void didIlose(BuildContext context, finalScore) {
                 color: Color(0xFFFFA29D),
               ),
             ),
+            SizedBox(height: 20),
             Image.asset('images/Secret Life Of Pets Snowball Cute Rabbit.gif'),
           ],
         ),
@@ -48,4 +50,3 @@ void didIlose(BuildContext context, finalScore) {
     },
   );
 }
-
