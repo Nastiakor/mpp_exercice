@@ -21,7 +21,9 @@ class Answer extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           color: answerColor,
-          border: Border.all(color: Colors.teal),
+          border: Border.all(
+            color: Color(0xFF30CE9B),
+          ),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(

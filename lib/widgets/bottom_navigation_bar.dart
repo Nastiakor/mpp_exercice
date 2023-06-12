@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mpp/style.dart';
-import 'package:mpp/widgets/startGame.dart';
+import 'package:mpp/pages/start_game.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   final int currentIndex;

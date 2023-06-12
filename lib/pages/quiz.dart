@@ -27,15 +27,21 @@ class _QuizGameState extends State<QuizGame> {
         _totalScore++;
         correctAnswerSelected = true;
       }
+
+      double screenWidth = MediaQuery.of(context).size.width;
+
+      int numberOfImagesInARow = 10;
+
+      double imageWidthPercentage = 1.0 / numberOfImagesInARow;
+      double imageWidth = screenWidth * imageWidthPercentage;
+
       // adding to the score tracker on top
       _scoreTracker.add(
-        answerScore
-            ? Image.asset(
-                "images/carrot.png",
-                height: 43,
-                width: 43,
-              )
-            : Image.asset("images/eaten_carrot.png", height: 43, width: 43),
+        Image.asset(
+          answerScore ? "images/carrot.png" : "images/eaten_carrot.png",
+          width: imageWidth,
+          fit: BoxFit.cover,
+        ),
       );
     });
   }
@@ -70,134 +76,159 @@ class _QuizGameState extends State<QuizGame> {
     });
   }
 
+  double adaptiveTextSize(BuildContext context, double size) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth * size / 414.0;
+  }
+
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Quiz',
-          style: contactAppBarTextStyle,
+          style: contactAppBarTextStyle.copyWith(
+            fontSize: adaptiveTextSize(context, 20),
+          ),
         ),
         backgroundColor: secondaryColor,
       ),
-      body: Container(
-        color: primaryColor,
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            Row(
-              children: [
-                if (_scoreTracker.length == 0) SizedBox(height: 40),
-                if (_scoreTracker.length > 0) ..._scoreTracker
-              ],
-            ),
-            SizedBox(height: 20),
-            Container(
-              width: double.infinity,
-              height: 130,
-              margin: EdgeInsets.only(bottom: 10, left: 30, right: 30),
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-              decoration: BoxDecoration(
-                color: secondaryColor,
-                borderRadius: BorderRadius.circular(10),
+      body: SingleChildScrollView(
+        child: Container(
+          color: primaryColor,
+          child: Column(
+            children: [
+              SizedBox(height: screenHeight * 0.02),
+              Row(
+                children: [
+                  if (_scoreTracker.length == 0)
+                    SizedBox(height: screenHeight * 0.05),
+                  if (_scoreTracker.length > 0) ..._scoreTracker
+                ],
               ),
-              child: Center(
-                child: Text(
-                  _questions[_questionIndex]['question'].toString(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            ...(_questions[_questionIndex]['answers']
-                    as List<Map<String, Object>>)
-                .map((answer) {
-              return Answer(
-                answerText: answer['answerText'].toString(),
-                answerColor: answerSelected
-                    ? answer['score'] == true
-                        ? Color(0xFF30CE9B)
-                        : Color(0xFFFFA29D)
-                    : null,
-                answerTap: () {
-                  // if answer was already selected then nothing happens onTap
-                  if (answerSelected) {
-                    return;
-                  }
-                  // answer is being selected
-                  _questionAnswered(answer['score'] as bool);
-                },
-              );
-            }).toList(),
-            SizedBox(height: 20),
-            endOfQuiz == false
-                ? ElevatedButton(
-                    style: elevatedButtonStyle,
-                    onPressed: () {
-                      if (!answerSelected) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                                'Tu dois choisir une réponse avant de passer à la question suivante'),
-                          ),
-                        );
-                        return;
-                      }
-                      _nextQuestion();
-                    },
-                    child: Text('Question suivante'),
-                  )
-                : ElevatedButton(
-                    style: elevatedButtonStyle,
-                    onPressed: () {
-                      if (!answerSelected) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                                'Tu dois choisir une réponse avant de passer à la question suivante'),
-                          ),
-                        );
-                        return;
-                      }
-                      _resetQuiz();
-                    },
-                    child: Text('Recommencer le quiz'),
-                  ),
-            Container(
-              padding: EdgeInsets.all(20),
-             /* child: Text(
-                '${_totalScore.toString()}/${_questions.length}',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF2C2C69),
-                ),
-              ),*/
-            ),
-            if (answerSelected && !endOfQuiz)
+              SizedBox(height: screenHeight * 0.02),
               Container(
-                height: 100,
                 width: double.infinity,
-                color: correctAnswerSelected
-                    ? Color(0xFF30CE9B)
-                    : Color(0xFFFFA29D),
+                height: screenHeight * 0.2,
+                margin: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.08, // 8% of screen width
+                  vertical: screenHeight * 0.02, // 2% of screen height
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.12, // 12% of screen width
+                  vertical: screenHeight * 0.02, // 2% of screen height
+                ),
+                decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Center(
                   child: Text(
-                    correctAnswerSelected
-                        ? "Bravo, c'est correct ! "
-                        : "Faux :(",
+                    _questions[_questionIndex]['question'].toString(),
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                        color: Colors.white,
+                        fontSize: adaptiveTextSize(context, 18),
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              ...(_questions[_questionIndex]['answers']
+                      as List<Map<String, Object>>)
+                  .map((answer) {
+                return Answer(
+                  answerText: answer['answerText'].toString(),
+                  answerColor: answerSelected
+                      ? answer['score'] == true
+                          ? Color(0xFF30CE9B)
+                          : Color(0xFFFFA29D)
+                      : null,
+                  answerTap: () {
+                    // if answer was already selected then nothing happens onTap
+                    if (answerSelected) {
+                      return;
+                    }
+                    // answer is being selected
+                    _questionAnswered(answer['score'] as bool);
+                  },
+                );
+              }).toList(),
+              SizedBox(height: 20),
+              endOfQuiz == false
+                  ? ElevatedButton(
+                      style: elevatedButtonStyle,
+                      onPressed: () {
+                        if (!answerSelected) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Tu dois choisir une réponse avant de passer à la question suivante'),
+                            ),
+                          );
+                          return;
+                        }
+                        _nextQuestion();
+                      },
+                      child: Text('Question suivante'),
+                    )
+                  : ElevatedButton(
+                      style: elevatedButtonStyle,
+                      onPressed: () {
+                        if (!answerSelected) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  'Tu dois choisir une réponse avant de passer à la question suivante'),
+                            ),
+                          );
+                          return;
+                        }
+                        _resetQuiz();
+                      },
+                      child: Text('Recommencer le quiz'),
+                    ),
+              Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.05,
+                    // 5% de la largeur de l'écran
+                    vertical:
+                        screenHeight * 0.01), // 1% de la hauteur de l'écran
+                /* child: Text(
+                  '${_totalScore.toString()}/${_questions.length}',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF2C2C69),
+                  ),
+                ),*/
+              ),
+              if (answerSelected && !endOfQuiz)
+                Container(
+                  constraints: BoxConstraints(maxHeight: screenHeight * 0.08),
+                  margin: EdgeInsets.only(bottom: screenHeight * 0.02),
+                  width: double.infinity,
+                  color: correctAnswerSelected
+                      ? Color(0xFF30CE9B)
+                      : Color(0xFFFFA29D),
+                  child: Center(
+                    child: Text(
+                      correctAnswerSelected
+                          ? "Bravo, c'est correct ! "
+                          : "Faux :(",
+                      style: TextStyle(
+                        fontSize: adaptiveTextSize(context, 18),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ),
     );
