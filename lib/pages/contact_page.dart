@@ -21,10 +21,10 @@ class ContactPage extends StatelessWidget {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: primaryColor,
-          width: double.infinity,
+      body: Container(
+        color: primaryColor,
+        width: double.infinity,
+        child: SingleChildScrollView(
           child: Column(
             children: [
               ContactCard(

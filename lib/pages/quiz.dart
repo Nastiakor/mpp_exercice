@@ -96,9 +96,10 @@ class _QuizGameState extends State<QuizGame> {
         ),
         backgroundColor: secondaryColor,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: primaryColor,
+      body: Container(
+        color: primaryColor,
+        height: double.infinity,
+        child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: screenHeight * 0.02),
@@ -191,19 +192,20 @@ class _QuizGameState extends State<QuizGame> {
                       child: Text('Recommencer le quiz'),
                     ),
               Container(
+                color: primaryColor,
                 padding: EdgeInsets.symmetric(
                     horizontal: screenWidth * 0.05,
                     // 5% de la largeur de l'écran
                     vertical:
                         screenHeight * 0.01), // 1% de la hauteur de l'écran
                 /* child: Text(
-                  '${_totalScore.toString()}/${_questions.length}',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2C2C69),
-                  ),
-                ),*/
+                    '${_totalScore.toString()}/${_questions.length}',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF2C2C69),
+                    ),
+                  ),*/
               ),
               if (answerSelected && !endOfQuiz)
                 Container(
