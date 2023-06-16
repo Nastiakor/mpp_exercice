@@ -32,19 +32,19 @@ class ContactPage extends StatelessWidget {
                 phoneNumber: '06 00 00 00 00',
               ),
               ContactCard(
-                name: 'Pierre M',
-                phoneNumber: '06 00 00 00 00',
-              ),
-              ContactCard(
                 name: 'Johan A',
                 phoneNumber: '06 00 00 00 00',
               ),
               ContactCard(
-                name: 'Sylvie V',
+                name: 'Joanne L',
                 phoneNumber: '06 00 00 00 00',
               ),
               ContactCard(
-                name: 'Karim C',
+                name: 'Stéfanie M',
+                phoneNumber: '06 00 00 00 00',
+              ),
+              ContactCard(
+                name: 'Karim F',
                 phoneNumber: '06 00 00 00 00',
               ),
               ContactCard(
