@@ -72,6 +72,10 @@ I had the idea to use the Mozilla extensions like Fonts ninja and ColorZilla to 
 <p float="left"> 
  <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/5f998cba-dd74-438b-b45f-18345e10cefc" width="100" /> 
  <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/3047470b-803b-4d95-92ad-bfe00cf27e93" width="100" /> 
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/1d0449ec-5cd3-4a9f-b90f-b7c78016a3e7" width="100" /> 
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/3cef98b4-9b82-4592-b383-addf54368133" width="100" /> 
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/1d0b5c94-8de8-4ec8-9079-9f59305b3479" width="100" /> 
+ <img src="https://github.com/Nastiakor/mpp_exercice/assets/114946987/4ce321a2-d2a4-4d26-8225-b5523297c307" width="100" /> 
 </p>
 
 I have also imported flutter_launcher_icons in order to create a customized MPP launcher icon: https://pub.dev/packages/flutter_launcher_icons.
